@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="script.js"></script>
+    <script
+      defer
+      src="https://applepay.cdn-apple.com/jsapi/v1/apple-pay-sdk.js"
+    ></script>
+    <script defer src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script defer src="https://unpkg.com/vue"></script>
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+    <script>
+      const AppleBinding = {
+        data() {
+          return {
+            // appleMerchantIdentifier: '${silentOrderPageData.parameters['appleMerchantIdentifier']}',
+            // appleEvent: JSON.parse(${silentOrderPageData.parameters['appleRequest']}),
+            // backendUrlValidateSession: "${validateSession}",
+            // backendUrlPay: "${pay}",
+            // locale: '${currentLanguage.isocode}',
+            // requestUrl: '${reqUrl}'
+            appleButton: '#applePayBtn',
+            appleMerchantIdentifier: 'merchant.com.example',
+            request: {
+              countryCode: 'PL',
+              currencyCode: 'USD',
+              merchantCapabilities: ['supports3DS'],
+              supportedNetworks: ['visa', 'masterCard', 'amex', 'discover'],
+              total: { type: 'final', amount: 130.87, label: 'electronics' },
+            },
+            backendUrlValidateSession:
+              '/trainingstorefront/electronics/en/apple/validateSession',
+            backendUrlPay: '/trainingstorefront/electronics/en/apple/pay',
+            requestUrl: '/trainingstorefront/electronics/en/apple/request',
+            locale: 'en',
+          };
+        },
+      };
+
+      document.onreadystatechange = function () {
+        if (document.readyState == 'complete') {
+          console.log('dd');
+        }
+      };
+    </script>
+  </head>
+  <body>
+    <h1>Hello there!</h1>
+    <apple-pay-button
+      style="black"
+      id="applePayBtnV"
+      type="buy"
+      locale="{{ locale }}"
+    ></apple-pay-button>
+    <a href="/me.html">My other page</a>
+  </body>
+</html>
