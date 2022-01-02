@@ -39,7 +39,16 @@
 
       document.onreadystatechange = function () {
         if (document.readyState == 'complete') {
-          console.log('dd');
+          if (applePayController.isApplePayAvailable()) {
+            applePayController.uiApplePayButton(true);
+            document
+              .querySelector(applePayController.DOMStrings.appleButton)
+              .addEventListener('click', function () {
+                applePayController.clickPay(
+                  applePayController.DOMStrings.request
+                );
+              });
+          }
         }
       };
     </script>
